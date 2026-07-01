@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Documentação · APEX Language</title>
+    <meta name="description" content="APEX — Linguagem de programação 100% em português, criada como projeto de Compiladores.">
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="site-header">
+    <div class="header-inner">
+        <a href="index.php" class="logo">
+            <span class="logo-mark">&lt;?</span>
+            <span class="logo-text">APEX <span class="v">v2.0</span></span>
+        </a>
+        <button class="mobile-menu-btn" onclick="document.querySelector('nav.main-nav').classList.toggle('open')">☰</button>
+        <nav class="main-nav">
+<a href="index.html" class="">Home</a>
+<a href="docs.html" class="active">Docs</a>
+<a href="download.html" class="">Download</a>
+<a href="sobre.html" class="">Sobre</a>
+<a href="feito-em-apex.html" class="">Feito em APEX</a>
+<a href="download.html" class="nav-cta">Instalar</a>
+        </nav>
+    </div>
+</header>
+
+<main>
+
+<div class="doc-layout">
+
+    <!-- SIDEBAR -->
+    <aside class="doc-sidebar">
+        <h4>Início</h4>
+        <ul>
+            <li><a href="#intro">Introdução</a></li>
+            <li><a href="#primeiro">Primeiro programa</a></li>
+        </ul>
+
+        <h4>Sintaxe</h4>
+        <ul>
+            <li><a href="#delimitadores">Delimitadores</a></li>
+            <li><a href="#variaveis">Variáveis</a></li>
+            <li><a href="#operadores">Operadores</a></li>
+            <li><a href="#controle">Controle de fluxo</a></li>
+            <li><a href="#io">Entrada/Saída</a></li>
+        </ul>
+
+        <h4>Funções</h4>
+        <ul>
+            <li><a href="#funcoes">Funções nativas</a></li>
+            <li><a href="#ui">Comandos de UI</a></li>
+        </ul>
+
+        <h4>Avançado</h4>
+        <ul>
+            <li><a href="#navegacao">Navegação</a></li>
+            <li><a href="#exemplos">Exemplos completos</a></li>
+        </ul>
+    </aside>
+
+    <!-- CONTEÚDO -->
+    <article>
+
+        <h1 id="intro">Documentação</h1>
+        <p class="lead">Guia completo da linguagem APEX. Tudo que você precisa pra começar a programar em português.</p>
+
+        <div class="callout">
+            <p><strong>Pré-requisito:</strong> Instale a extensão da APEX no VS Code. Veja a página de <a href="download.php">Download</a>.</p>
+        </div>
+
+        <h2 id="primeiro">Primeiro programa</h2>
+        <p>Todo programa APEX começa com <code>&lt;?apex</code> e termina com <code>fim?&gt;</code>. Veja o clássico "Olá, mundo":</p>
+
+        <div class="code-block">
+    <div class="code-header">
+        <span class="filename">ola.apex</span>
+        <button class="code-copy">Copiar</button>
+    </div>
+    <pre><span class="tok-delim">&lt;?apex</span>
+    <span class="tok-fn">exibir</span>(<span class="tok-str">&quot;Olá, mundo!&quot;</span>);
+<span class="tok-delim">fim?&gt;</span></pre>
+</div>
+
+        <p>Salve esse código num arquivo <code>.apex</code>, aperte <strong>F5</strong> no VS Code e veja a mágica acontecer.</p>
+
+        <h2 id="delimitadores">Delimitadores</h2>
+        <p>Os delimitadores marcam onde o código APEX começa e termina:</p>
+
+        <table>
+            <thead>
+                <tr><th>Token</th><th>Função</th></tr>
+            </thead>
+            <tbody>
+                <tr><td><code>&lt;?apex</code></td><td>Início do programa (obrigatório)</td></tr>
+                <tr><td><code>fim?&gt;</code></td><td>Fim do programa (obrigatório)</td></tr>
+            </tbody>
+        </table>
+
+        <h2 id="variaveis">Variáveis</h2>
+        <p>Variáveis em APEX começam com <code>$</code>, igual em PHP. Não precisa declarar tipo:</p>
+
+        <div class="code-block">
+    <div class="code-header">
+        <span class="filename">variaveis.apex</span>
+        <button class="code-copy">Copiar</button>
+    </div>
+    <pre><span class="tok-delim">&lt;?apex</span>
+    <span class="tok-var">$nome</span> <span class="tok-op">=</span> <span class="tok-str">&quot;Gabriel&quot;</span>;
+    <span class="tok-var">$idade</span> <span class="tok-op">=</span> <span class="tok-num">22</span>;
+    <span class="tok-var">$preco</span> <span class="tok-op">=</span> <span class="tok-num">12.50</span>;
+    <span class="tok-var">$ativo</span> <span class="tok-op">=</span> <span class="tok-str">&quot;sim&quot;</span>;
+
+    <span class="tok-fn">exibir</span>(<span class="tok-str">&quot;Nome: &quot;</span> <span class="tok-op">+</span> <span class="tok-var">$nome</span>);
+    <span class="tok-fn">exibir</span>(<span class="tok-str">&quot;Idade: &quot;</span> <span class="tok-op">+</span> <span class="tok-var">$idade</span>);
+<span class="tok-delim">fim?&gt;</span></pre>
+</div>
+
+        <p>O operador <code>+</code> funciona como soma para números e como concatenação para strings.</p>
+
+        <h2 id="operadores">Operadores</h2>
+
+        <h3>Aritméticos</h3>
+        <table>
+            <thead>
+                <tr><th>Operador</th><th>Função</th><th>Exemplo</th></tr>
+            </thead>
+            <tbody>
+                <tr><td><code>+</code></td><td>Soma / concatenação</td><td><code>$a + $b</code></td></tr>
+                <tr><td><code>-</code></td><td>Subtração</td><td><code>$a - $b</code></td></tr>
+                <tr><td><code>*</code></td><td>Multiplicação</td><td><code>$a * $b</code></td></tr>
+                <tr><td><code>/</code></td><td>Divisão</td><td><code>$a / $b</code></td></tr>
+                <tr><td><code>%</code></td><td>Resto da divisão</td><td><code>$n % 2</code></td></tr>
+            </tbody>
+        </table>
+
+        <h3>Relacionais</h3>
+        <table>
+            <thead>
+                <tr><th>Operador</th><th>Significado</th></tr>
+            </thead>
+            <tbody>
+                <tr><td><code>==</code></td><td>Igual</td></tr>
+                <tr><td><code>!=</code></td><td>Diferente</td></tr>
+                <tr><td><code>&gt;</code> / <code>&lt;</code></td><td>Maior / menor</td></tr>
+                <tr><td><code>&gt;=</code> / <code>&lt;=</code></td><td>Maior ou igual / menor ou igual</td></tr>
+            </tbody>
+        </table>
+
+        <h2 id="controle">Controle de fluxo</h2>
+
+        <h3>Condicional</h3>
+        <div class="code-block">
+    <div class="code-header">
+        <span class="filename">condicional.apex</span>
+        <button class="code-copy">Copiar</button>
+    </div>
+    <pre><span class="tok-delim">&lt;?apex</span>
+    <span class="tok-var">$idade</span> <span class="tok-op">=</span> <span class="tok-num">18</span>;
+
+    <span class="tok-kw">se</span> (<span class="tok-var">$idade</span> <span class="tok-op">&gt;=</span> <span class="tok-num">18</span>) {
+        <span class="tok-fn">exibir</span>(<span class="tok-str">&quot;Maior de idade&quot;</span>);
+    } <span class="tok-kw">senao</span> {
+        <span class="tok-fn">exibir</span>(<span class="tok-str">&quot;Menor de idade&quot;</span>);
+    }
+<span class="tok-delim">fim?&gt;</span></pre>
+</div>
+
+        <h3>Laço de repetição</h3>
+        <div class="code-block">
+    <div class="code-header">
+        <span class="filename">laco.apex</span>
+        <button class="code-copy">Copiar</button>
+    </div>
+    <pre><span class="tok-delim">&lt;?apex</span>
+    <span class="tok-var">$i</span> <span class="tok-op">=</span> <span class="tok-num">1</span>;
+    <span class="tok-kw">enquanto</span> (<span class="tok-var">$i</span> <span class="tok-op">&lt;=</span> <span class="tok-num">5</span>) {
+        <span class="tok-fn">exibir</span>(<span class="tok-str">&quot;Número: &quot;</span> <span class="tok-op">+</span> <span class="tok-var">$i</span>);
+        <span class="tok-var">$i</span> <span class="tok-op">=</span> <span class="tok-var">$i</span> <span class="tok-op">+</span> <span class="tok-num">1</span>;
+    }
+<span class="tok-delim">fim?&gt;</span></pre>
+</div>
+
+        <h2 id="io">Entrada e Saída</h2>
+        <p>A APEX tem três funções principais de I/O. As funções <code>ler</code> têm prefixos especiais que mudam a aparência:</p>
+
+        <table>
+            <thead>
+                <tr><th>Função</th><th>O que faz</th></tr>
+            </thead>
+            <tbody>
+                <tr><td><code>exibir(texto)</code></td><td>Mostra texto na saída</td></tr>
+                <tr><td><code>ler(pergunta)</code></td><td>Lê entrada de texto do usuário</td></tr>
+                <tr><td><code>ler_numero(pergunta)</code></td><td>Lê entrada numérica</td></tr>
+            </tbody>
+        </table>
+
+        <h3>Prefixos especiais do <code>ler()</code></h3>
+
+        <p>O texto da pergunta pode começar com prefixos especiais que mudam o tipo de campo gerado:</p>
+
+        <div class="code-block">
+    <div class="code-header">
+        <span class="filename">entrada.apex</span>
+        <button class="code-copy">Copiar</button>
+    </div>
+    <pre><span class="tok-delim">&lt;?apex</span>
+    <span class="tok-com">// Texto simples</span>
+    <span class="tok-var">$nome</span> <span class="tok-op">=</span> <span class="tok-fn">ler</span>(<span class="tok-str">&quot;Qual seu nome?&quot;</span>);
+
+    <span class="tok-com">// Cardápio: gera grid de cards selecionáveis</span>
+    <span class="tok-var">$prato</span> <span class="tok-op">=</span> <span class="tok-fn">ler</span>(<span class="tok-str">&quot;cardapio:Pizza=35|Lasanha=28|Salada=20&quot;</span>);
+
+    <span class="tok-com">// Campo opcional (não obrigatório)</span>
+    <span class="tok-var">$cupom</span> <span class="tok-op">=</span> <span class="tok-fn">ler</span>(<span class="tok-str">&quot;opcional:Tem cupom de desconto?&quot;</span>);
+
+    <span class="tok-com">// Número</span>
+    <span class="tok-var">$qtd</span> <span class="tok-op">=</span> <span class="tok-fn">ler_numero</span>(<span class="tok-str">&quot;Quantas pessoas?&quot;</span>);
+
+    <span class="tok-fn">exibir</span>(<span class="tok-str">&quot;Pedido: &quot;</span> <span class="tok-op">+</span> <span class="tok-var">$prato</span>);
+    <span class="tok-fn">exibir</span>(<span class="tok-str">&quot;Total: R$ &quot;</span> <span class="tok-op">+</span> (<span class="tok-var">$prato_preco</span> <span class="tok-op">*</span> <span class="tok-var">$qtd</span>));
+<span class="tok-delim">fim?&gt;</span></pre>
+</div>
+
+        <h2 id="funcoes">Funções nativas</h2>
+
+        <table>
+            <thead>
+                <tr><th>Função</th><th>Exemplo</th><th>Resultado</th></tr>
+            </thead>
+            <tbody>
+                <tr><td><code>maiusculas(texto)</code></td><td><code>maiusculas("pizza")</code></td><td><code>"PIZZA"</code></td></tr>
+                <tr><td><code>minusculas(texto)</code></td><td><code>minusculas("PIZZA")</code></td><td><code>"pizza"</code></td></tr>
+                <tr><td><code>tamanho(texto)</code></td><td><code>tamanho("apex")</code></td><td><code>4</code></td></tr>
+                <tr><td><code>aleatorio(min, max)</code></td><td><code>aleatorio(1, 100)</code></td><td>número aleatório</td></tr>
+                <tr><td><code>arredondar(valor)</code></td><td><code>arredondar(12.7)</code></td><td><code>13</code></td></tr>
+            </tbody>
+        </table>
+
+        <h2 id="ui">Comandos de UI</h2>
+        <p>A APEX é também uma <strong>linguagem geradora de páginas web</strong>. Use estes comandos pra criar HTML automaticamente:</p>
+
+        <table>
+            <thead>
+                <tr><th>Comando</th><th>O que faz</th></tr>
+            </thead>
+            <tbody>
+                <tr><td><code>pagina("titulo")</code></td><td>Define o título da aba</td></tr>
+                <tr><td><code>titulo("texto")</code></td><td>Título principal (H1)</td></tr>
+                <tr><td><code>subtitulo("texto")</code></td><td>Subtítulo (H2)</td></tr>
+                <tr><td><code>paragrafo("texto")</code></td><td>Parágrafo</td></tr>
+                <tr><td><code>botao("texto", "destino.apex")</code></td><td>Botão clicável</td></tr>
+                <tr><td><code>link("texto", "destino")</code></td><td>Link simples</td></tr>
+                <tr><td><code>imagem("url", "descricao")</code></td><td>Imagem</td></tr>
+                <tr><td><code>caixa_inicio()</code> ... <code>caixa_fim()</code></td><td>Container visual (card)</td></tr>
+                <tr><td><code>separador()</code></td><td>Linha horizontal</td></tr>
+                <tr><td><code>espaco()</code></td><td>Espaçamento vertical</td></tr>
+            </tbody>
+        </table>
+
+        <p>Exemplo de página completa:</p>
+
+        <div class="code-block">
+    <div class="code-header">
+        <span class="filename">loja.apex</span>
+        <button class="code-copy">Copiar</button>
+    </div>
+    <pre><span class="tok-delim">&lt;?apex</span>
+    <span class="tok-fn">pagina</span>(<span class="tok-str">&quot;Minha Loja&quot;</span>);
+
+    <span class="tok-fn">titulo</span>(<span class="tok-str">&quot;Bem-vindo!&quot;</span>);
+    <span class="tok-fn">paragrafo</span>(<span class="tok-str">&quot;Confira nossas categorias.&quot;</span>);
+
+    <span class="tok-fn">separador</span>();
+
+    <span class="tok-fn">subtitulo</span>(<span class="tok-str">&quot;Departamentos&quot;</span>);
+
+    <span class="tok-fn">caixa_inicio</span>();
+        <span class="tok-fn">paragrafo</span>(<span class="tok-str">&quot;Roupas, calçados e acessórios.&quot;</span>);
+        <span class="tok-fn">botao</span>(<span class="tok-str">&quot;Ver tudo&quot;</span>, <span class="tok-str">&quot;moda.apex&quot;</span>);
+    <span class="tok-fn">caixa_fim</span>();
+
+    <span class="tok-fn">espaco</span>();
+
+    <span class="tok-fn">caixa_inicio</span>();
+        <span class="tok-fn">paragrafo</span>(<span class="tok-str">&quot;Eletrônicos e tecnologia.&quot;</span>);
+        <span class="tok-fn">botao</span>(<span class="tok-str">&quot;Ver tudo&quot;</span>, <span class="tok-str">&quot;tech.apex&quot;</span>);
+    <span class="tok-fn">caixa_fim</span>();
+<span class="tok-delim">fim?&gt;</span></pre>
+</div>
+
+        <h2 id="navegacao">Navegação entre páginas</h2>
+        <p>Quando o <code>botao()</code> ou <code>link()</code> aponta pra um arquivo <code>.apex</code>, a APEX gera automaticamente uma URL amigável:</p>
+
+        <div class="code-block">
+    <div class="code-header">
+        <span class="filename">navegacao.apex</span>
+        <button class="code-copy">Copiar</button>
+    </div>
+    <pre><span class="tok-delim">&lt;?apex</span>
+    <span class="tok-fn">botao</span>(<span class="tok-str">&quot;Sobre nós&quot;</span>, <span class="tok-str">&quot;sobre.apex&quot;</span>);
+    <span class="tok-com">// Vira: &lt;a href=&quot;/sobre.apex&quot;&gt;Sobre nós&lt;/a&gt;</span>
+<span class="tok-delim">fim?&gt;</span></pre>
+</div>
+
+        <p>Cada arquivo APEX vira uma URL: <code>localhost:8765/sobre.apex</code>. Igual a um site real.</p>
+
+        <h2 id="exemplos">Exemplos completos</h2>
+
+        <h3>Sistema de pedidos (restaurante)</h3>
+        <p>Demonstra cardápio interativo, cálculos, condicionais e funções nativas:</p>
+
+        <div class="code-block">
+    <div class="code-header">
+        <span class="filename">restaurante.apex</span>
+        <button class="code-copy">Copiar</button>
+    </div>
+    <pre><span class="tok-delim">&lt;?apex</span>
+    <span class="tok-var">$prato</span> <span class="tok-op">=</span> <span class="tok-fn">ler</span>(<span class="tok-str">&quot;cardapio:Pizza=35|Lasanha=28|Salada=20&quot;</span>);
+    <span class="tok-var">$qtd</span> <span class="tok-op">=</span> <span class="tok-fn">ler_numero</span>(<span class="tok-str">&quot;Quantas pessoas?&quot;</span>);
+
+    <span class="tok-var">$preco</span> <span class="tok-op">=</span> <span class="tok-num">0</span>;
+    <span class="tok-kw">se</span> (<span class="tok-var">$prato</span> <span class="tok-op">==</span> <span class="tok-str">&quot;Pizza&quot;</span>)   { <span class="tok-var">$preco</span> <span class="tok-op">=</span> <span class="tok-num">35</span>; }
+    <span class="tok-kw">se</span> (<span class="tok-var">$prato</span> <span class="tok-op">==</span> <span class="tok-str">&quot;Lasanha&quot;</span>) { <span class="tok-var">$preco</span> <span class="tok-op">=</span> <span class="tok-num">28</span>; }
+    <span class="tok-kw">se</span> (<span class="tok-var">$prato</span> <span class="tok-op">==</span> <span class="tok-str">&quot;Salada&quot;</span>)  { <span class="tok-var">$preco</span> <span class="tok-op">=</span> <span class="tok-num">20</span>; }
+
+    <span class="tok-var">$subtotal</span> <span class="tok-op">=</span> <span class="tok-var">$preco</span> <span class="tok-op">*</span> <span class="tok-var">$qtd</span>;
+    <span class="tok-var">$taxa</span> <span class="tok-op">=</span> <span class="tok-var">$subtotal</span> <span class="tok-op">*</span> <span class="tok-num">10</span> <span class="tok-op">/</span> <span class="tok-num">100</span>;
+    <span class="tok-var">$total</span> <span class="tok-op">=</span> <span class="tok-var">$subtotal</span> <span class="tok-op">+</span> <span class="tok-var">$taxa</span>;
+    <span class="tok-var">$numero</span> <span class="tok-op">=</span> <span class="tok-fn">aleatorio</span>(<span class="tok-num">100</span>, <span class="tok-num">999</span>);
+
+    <span class="tok-fn">exibir</span>(<span class="tok-str">&quot;=== PEDIDO #&quot;</span> <span class="tok-op">+</span> <span class="tok-var">$numero</span> <span class="tok-op">+</span> <span class="tok-str">&quot; ===&quot;</span>);
+    <span class="tok-fn">exibir</span>(<span class="tok-str">&quot;Prato: &quot;</span> <span class="tok-op">+</span> <span class="tok-fn">maiusculas</span>(<span class="tok-var">$prato</span>));
+    <span class="tok-fn">exibir</span>(<span class="tok-str">&quot;Pessoas: &quot;</span> <span class="tok-op">+</span> <span class="tok-var">$qtd</span>);
+    <span class="tok-fn">exibir</span>(<span class="tok-str">&quot;Subtotal: R$ &quot;</span> <span class="tok-op">+</span> <span class="tok-var">$subtotal</span>);
+    <span class="tok-fn">exibir</span>(<span class="tok-str">&quot;Taxa: R$ &quot;</span> <span class="tok-op">+</span> <span class="tok-fn">arredondar</span>(<span class="tok-var">$taxa</span>));
+    <span class="tok-fn">exibir</span>(<span class="tok-str">&quot;TOTAL: R$ &quot;</span> <span class="tok-op">+</span> <span class="tok-fn">arredondar</span>(<span class="tok-var">$total</span>));
+<span class="tok-delim">fim?&gt;</span></pre>
+</div>
+
+    </article>
+</div>
+
+</main>
+
+<footer class="site-footer">
+    <div class="footer-inner">
+        <div class="footer-brand">
+            <a href="index.php" class="logo">
+                <span class="logo-mark">&lt;?</span>
+                <span class="logo-text">APEX</span>
+            </a>
+            <p>Linguagem de programação 100% em português, criada como projeto da disciplina de Compiladores.</p>
+        </div>
+        <div class="footer-col">
+            <h5>Linguagem</h5>
+            <ul>
+                <li><a href="docs.php">Documentação</a></li>
+                <li><a href="docs.php#exemplos">Exemplos</a></li>
+                <li><a href="docs.php#sintaxe">Sintaxe</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h5>Projeto</h5>
+            <ul>
+                <li><a href="download.php">Download</a></li>
+                <li><a href="sobre.php">Sobre</a></li>
+                <li><a href="sobre.php#equipe">Equipe</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        APEX Language · Projeto acadêmico de Compiladores · Engenharia de Software BES 2023
+    </div>
+</footer>
+
+<script>
+// Copy to clipboard nos blocos de código
+document.querySelectorAll('.code-copy').forEach(btn => {
+    btn.addEventListener('click', () => {
+        const codigo = btn.closest('.code-block').querySelector('pre').innerText;
+        navigator.clipboard.writeText(codigo).then(() => {
+            const original = btn.textContent;
+            btn.textContent = 'Copiado!';
+            btn.classList.add('copied');
+            setTimeout(() => {
+                btn.textContent = original;
+                btn.classList.remove('copied');
+            }, 1500);
+        });
+    });
+});
+
+// Reveal on scroll
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+        if (e.isIntersecting) e.target.classList.add('visible');
+    });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

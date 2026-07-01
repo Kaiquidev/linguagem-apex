@@ -36,12 +36,12 @@ function abrir_pagina($titulo, $descricao = '') {
         </a>
         <button class="mobile-menu-btn" onclick="document.querySelector('nav.main-nav').classList.toggle('open')">☰</button>
         <nav class="main-nav">
-            <a href="index.php" class="<?= eh_ativo('index') ?>">Home</a>
-            <a href="docs.php" class="<?= eh_ativo('docs') ?>">Docs</a>
-            <a href="download.php" class="<?= eh_ativo('download') ?>">Download</a>
-            <a href="sobre.php" class="<?= eh_ativo('sobre') ?>">Sobre</a>
-            <a href="demo-apex/runtime/ide.php?acao=abrir_apex&arquivo=index.apex">Feito em APEX</a>
-            <a href="download.php" class="nav-cta">Instalar</a>
+<a href="index.html" class="<?= eh_ativo('index') ?>">Home</a>
+<a href="docs.html" class="<?= eh_ativo('docs') ?>">Docs</a>
+<a href="download.html" class="<?= eh_ativo('download') ?>">Download</a>
+<a href="sobre.html" class="<?= eh_ativo('sobre') ?>">Sobre</a>
+<a href="feito-em-apex.html" class="<?= eh_ativo('feito-em-apex') ?>">Feito em APEX</a>
+<a href="download.html" class="nav-cta">Instalar</a>
         </nav>
     </div>
 </header>
